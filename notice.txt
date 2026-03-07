@@ -1,0 +1,9 @@
+# build first
+docker build -t adaptive_chunks .
+
+# run after that
+
+docker run -p 5007:5007 \
+  -v $(pwd)/.env:/app/.env \
+  -v /home/dennis/workspace/adaptive_chunksize/quac_chromadb/:/app/quac_chromadb
+  adaptive_chunks
