@@ -85,7 +85,7 @@ def check_format_of_dataset(json_path):
 
 
 def send_telegram_message(message: str):
-    token = "8013643521:AAEncrdXp-Xii93zSaFpr4UlN1LIQXPo64I"
+    token = os.environ.get("TELEGRAM_KEY")
     chat_id = "1744072683"
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     payload = {"chat_id": chat_id, "text": message}
