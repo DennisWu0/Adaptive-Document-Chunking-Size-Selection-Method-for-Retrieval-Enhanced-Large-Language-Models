@@ -181,14 +181,6 @@ You must provide valid API keys for:
 - Telegram
 > 
 
-## 🌐 Access the Application
-
-Once the server is running, you can access the application at:
-
-- Local: http://localhost:5007
-- Network: http://127.0.0.1:5007
-
-> Ensure that port `5007` is not occupied by another process.
 
 ---
 
@@ -233,6 +225,16 @@ Download from:
 
 https://visualstudio.microsoft.com/visual-cpp-build-tools/
 
+```
+## 🌐 Access the Application
+
+Once the server is running, you can access the application at:
+
+- Local: http://localhost:5007
+- Network: http://127.0.0.1:5007
+
+> Ensure that port `5007` is not occupied by another process.
+```
 
 ---
 
