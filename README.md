@@ -9,7 +9,10 @@ The proposed method consists of two core modules: a Hierarchical Chunking Strate
 - **The Hierarchical Chunking Strategy** is integrated into the initial stage of an automated data processing pipeline and **segments each document into three levels of granularity**: 512-token, 256-token, and 128-token chunks. This multi-level representation allows the retrieval model to access information at different contextual scopes, enabling more flexible and context-aware retrieval behavior. Larger chunks preserve global context, while smaller chunks provide fine-grained semantic matching. To support scalability and reproducibility, the automated data pipeline converts structured JSON inputs into vector embeddings and stores them in ChromaDB. This design simplifies low-level processing details, enabling users to concentrate mainly on preparing input instead of manually managing data.
 - While HCS improves retrieval flexibility, it also provides overlapping and redundant content across chunk levels. To address this issue, we introduce a **Chunk Selection Mechanism** that **filters duplicated information across different granularities**. The mechanism prioritizes contextual coherence while reducing token redundancy, ensuring that only the most relevant and non-overlapping chunks are retained. Based on similarity scores and token budget constraints, the final set of retrieved chunks is selected to maximize both relevance and contextual coverage for downstream generation.
 
+<div align="center">
 <img width="1056" height="1052" alt="Picture1" src="https://github.com/user-attachments/assets/85ac53a3-ceef-4b36-a23a-b67d5692989d" />
+</div>
+
 
 **🎯 Core Components** 
 
@@ -30,16 +33,11 @@ Our method implements **an effective pipeline** that fundamentally extends tra
 
 ### **1. Preparing Data for RAG System Evaluation and Validation**
 
-This study utilizes four datasets: **Natural Questions**, **TriviaQA**, **QuAC**, and
+This study utilizes four datasets: **Natural Questions**, **TriviaQA**, **QuAC**, and **NarrativeQA** with details in Table below. These datasets were selected because they contain long documents, diverse question types, and, most importantly, grounded answers that serve as a critical reference for validating retrieved documents.
 
-**NarrativeQA** with details in Table below. These datasets were selected because they
-
-contain long documents, diverse question types, and, most importantly, grounded
-
-answers that serve as a critical reference for validating retrieved documents.
-
+<div align="center">
 <img width="700" height="614" alt="Screenshot 2026-03-26 at 3 47 39 PM" src="https://github.com/user-attachments/assets/6454be6a-2c44-456a-b3fe-0046fd3321cf" />
-
+</div>
 
 
 ### 2. Automated Pipeline for Data Ingestion and Vector Indexing
@@ -53,7 +51,10 @@ An automated workflow designed to convert JSON-formatted data into vector embedd
 
 - **The Hierarchical Chunking Strategy**: is implemented to segment each document into three levels of granularity: 512-token, 256-token, and 128-token chunks allowing us to meet the experimental requirements and evaluate performance across multiple chunk sizes.
 
+<div align="center">
 <img width="699" height="841" alt="Picture3" src="https://github.com/user-attachments/assets/f2017337-a8c8-4277-bbc7-9a5e72ca6f21" />
+</div>
+
 
 
 - **Data Ingestion into SQLite:** Loading the input JSON raw data files and verifying whether they conform to a predefined schema. If yes, we implements a hierarchical text preprocessing pipeline to support structured storage within a SQLite relational database.
@@ -76,14 +77,16 @@ Storing documents in multiple chunk sizes introduces the challenge of redundant 
 - **Normalized Similarity Scoring Strategy**: Uses normalized embeddings to ensure consistent similarity computation, preventing magnitude distortion and improving retrieval reliability.
 - **L2 Distance-Based Similarity Transformation**: Converts squared Euclidean distance into a bounded similarity score range [-1, 1], maintaining interpretability while leveraging the efficiency of L2 distance in vector databases.
     
-
-    <img width="720" height="267" alt="Screenshot 2026-03-26 at 3 44 32 PM" src="https://github.com/user-attachments/assets/76c9a36b-4f57-46a0-a8c0-e8adbb323dc0" />
+<div align="center">
+<img width="788" height="501" alt="Screenshot 2026-03-26 at 3 44 06 PM" src="https://github.com/user-attachments/assets/b400fc83-fe96-4a60-bc4e-7b0e529ff162" />
+</div>
 
 
 Given that the range of cos(𝜃) spans from [−1,1], and the squared Euclidean distance between normalized vectors lies within [0,4], we can transform the distance metric to align with the familiar similarity range. To achieve this, we define a new similarity function, denoted as “sim,” by rearranging the expression accordingly:
 
-<img width="700" height="614" alt="Screenshot 2026-03-26 at 3 47 39 PM" src="https://github.com/user-attachments/assets/b24b4ba8-100d-4026-9c62-0ad539af5289" />
-
+<div align="center">
+<img width="720" height="267" alt="Screenshot 2026-03-26 at 3 44 32 PM" src="https://github.com/user-attachments/assets/2db57afa-a283-4361-85b3-1745e01650b9" />
+</div>
 
 
 ### 4. Evaluation Metrics
@@ -105,17 +108,23 @@ strategies.
 
 - **Similarity-Based Retrieval Quality Assessment:** computing the mean similarity score between the query embeddings and the retrieved document embeddings.
 
-<img width="788" height="501" alt="Screenshot 2026-03-26 at 3 44 06 PM" src="https://github.com/user-attachments/assets/abe0973a-a8f1-4c14-b028-1238431fdafa" />
+<div align="center">
+<img width="778" height="272" alt="Screenshot 2026-03-26 at 3 39 07 PM" src="https://github.com/user-attachments/assets/634b1d1b-7364-4553-a9b1-ddcc5195f078" />
+</div>
 
 
 - **Mean Average Precision (MAP):**  is used to evaluate retrieval performance by computing the average precision for each query and then taking the mean over all queries. In our experiment, we apply a relevance threshold of **similarity ≥ 0.65**, consistent with the setting adopted in the MRR evaluation.
 
-<img width="720" height="267" alt="Screenshot 2026-03-26 at 3 44 32 PM" src="https://github.com/user-attachments/assets/da32587b-ecf0-4799-9553-5c280070fcf3" />
+<div align="center">
+<img width="711" height="123" alt="Screenshot 2026-03-26 at 3 40 28 PM" src="https://github.com/user-attachments/assets/e1757e1b-709a-46fa-9d36-9ea27c8f905a" />
+</div>
 
 
 - **Mean Reciprocal Rank (MRR):** measures how quickly the first relevant document appears within the ranked retrieval results. Specifically, it is computed as the average of the reciprocal rank of the first relevant document across all queries. The same relevance threshold (≥ 0.65) is used to determine whether a document is considered relevant
 
-<img width="700" height="614" alt="Screenshot 2026-03-26 at 3 47 39 PM" src="https://github.com/user-attachments/assets/b947859b-dbe6-441d-8c47-99cd66b76c24" />
+<div align="center">
+<img width="706" height="264" alt="Screenshot 2026-03-26 at 3 43 25 PM" src="https://github.com/user-attachments/assets/a46d16f4-350a-4eb2-9c6f-275ab60dc927" />
+</div>
 
 
 ### 5. Overall System Architecture
@@ -154,9 +163,11 @@ JSON_DIR="./dataset/natural_question.json"
 CHROMA_DB_DIR="./chromadb/natural_question_chromadb"
 DB_NAME="natural_question_sql.db"
 
-HUGGINGFACE_API_KEY=""
-GOOGLE_API_KEY=""
-TELEGRAM_KEY=""
+# Fill in your API keys below
+
+HUGGINGFACE_API_KEY= "YOUR_HUGGINGFACE_API_KEY"
+GOOGLE_API_KEY= "YOUR_GOOGLE_API_KEY"
+TELEGRAM_KEY= "YOUR_TELEGRAM_KEY"
 
 TOKENIZER_MODEL="meta-llama/Llama-3.2-1B"
 ```
@@ -177,7 +188,7 @@ You must provide valid API keys for:
 
 ```
 python-m venv env
-env\Scripts\activate
+.\env\Scripts\activate
 
 pip install--upgrade pip
 pip install-r requirements.txt
