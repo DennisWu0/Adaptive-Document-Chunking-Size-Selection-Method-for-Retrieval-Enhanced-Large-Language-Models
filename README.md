@@ -57,7 +57,7 @@ An automated workflow designed to convert JSON-formatted data into vector embedd
 - **The Hierarchical Chunking Strategy**: is implemented to segment each document into three levels of granularity: 512-token, 256-token, and 128-token chunks allowing us to meet the experimental requirements and evaluate performance across multiple chunk sizes.
 
 <div align="center">
-<img width="233" height="280" alt="Picture3" src="https://github.com/user-attachments/assets/f2017337-a8c8-4277-bbc7-9a5e72ca6f21" />
+<img width="466" height="560" alt="Picture3" src="https://github.com/user-attachments/assets/f2017337-a8c8-4277-bbc7-9a5e72ca6f21" />
 </div>
 
 
