@@ -244,23 +244,20 @@ Once the server is running, you can access the application at:
 
 In this project, four datasets are used concurrently for experimental and academic purposes. However, the system is not restricted to these datasets. You can easily integrate your own data by following the required format and rebuilding the database.
 
-Step 1: Prepare Your Dataset
+**Step 1: Prepare Your Dataset**
 Reformat your dataset into the following JSON structure:
-```
-{
-  "document": [],
-  "question": [],
-  "answer": [],
-  "ori_doc_title": []
-}
-```
+
+<div align="center">
+<img width="1140" height="276" alt="image-3" src="https://github.com/user-attachments/assets/a7b18dc0-1570-487c-8b12-05101e35cd01" />
+</div>
+
 📌 Field Description
 document: Source text (used for retrieval)
 question: Query related to the document
 answer: Ground truth
 ori_doc_title: Original document title
 
-Step 2: Place the Dataset
+**Step 2: Place the Dataset**
 Move your formatted dataset into the project directory:
 ```
 ./dataset/
@@ -270,17 +267,37 @@ Example:
 ./dataset/my_custom_dataset.json
 ```
 
-Step 3: Update Configuration
+**Step 3: Update Configuration**
 Modify your .env file to point to your dataset:
-```JSON_DIR="./dataset/my_custom_dataset.json"```
+```
+JSON_DIR="./dataset/my_custom_dataset.json"
+```
 
-Step 4: Build the Database
+**Step 4: Build the Database**
 Run the database construction script:
+```
 python chroma_project/database/main.py
-This will:
+```
+
+**Step5: Check the Data's format**
+- The system will first validate whether the variable names and data format are correct.
+- If all checks pass, you will be prompted with a final confirmation, simply enter 'yes' to start the process.
+The workflow will proceed as illustrated below: 
+
+<div align="center">
+<img width="628" height="165" alt="Screenshot 2026-03-26 at 6 04 35 PM" src="https://github.com/user-attachments/assets/9c2f6206-baaf-4e26-90fa-d00dd26c51ba" />
+</div>
+
+🎯 The final results of this process will:
 - Process your dataset
 - Generate embeddings
 - Store them in ChromaDB
+
+> ⚠️ Performance Note
+Processing even a subset of the Natural Questions dataset can be computationally intensive.
+On an NVIDIA RTX 4060 GPU, the process takes approximately 1 hour.
+For optimal performance, GPU acceleration is strongly recommended.
+>
 
 ---
 
