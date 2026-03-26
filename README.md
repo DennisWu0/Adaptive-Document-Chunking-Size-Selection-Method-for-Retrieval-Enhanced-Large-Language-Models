@@ -225,8 +225,10 @@ Download from:
 
 https://visualstudio.microsoft.com/visual-cpp-build-tools/
 
-```
-## 🌐 Access the Application
+---
+
+
+## 🌐 **Access the Application**
 
 Once the server is running, you can access the application at:
 
@@ -234,7 +236,7 @@ Once the server is running, you can access the application at:
 - Network: http://127.0.0.1:5007
 
 > Ensure that port `5007` is not occupied by another process.
-```
+
 
 ---
 
