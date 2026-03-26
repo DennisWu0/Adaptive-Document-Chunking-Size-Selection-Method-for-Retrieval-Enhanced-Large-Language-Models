@@ -228,7 +228,7 @@ https://visualstudio.microsoft.com/visual-cpp-build-tools/
 ---
 
 
-## 🌐 **Access the Application**
+## **🌐 Access the Application**
 
 Once the server is running, you can access the application at:
 
@@ -240,7 +240,8 @@ Once the server is running, you can access the application at:
 
 ---
 
-🗄️ Create Your Own Database
+## **🗄️ Create Your Own Database**
+
 In this project, four datasets are used concurrently for experimental and academic purposes. However, the system is not restricted to these datasets. You can easily integrate your own data by following the required format and rebuilding the database.
 
 Step 1: Prepare Your Dataset
