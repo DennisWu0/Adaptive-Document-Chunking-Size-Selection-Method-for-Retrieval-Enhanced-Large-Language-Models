@@ -13,6 +13,6 @@ docker build -t adaptive-chunks-test .
 # Run the container
 docker run --gpus all -p 5007:5007 \
     -v $(pwd)/.env:/app/.env \
-    -v /home/dennis/workspace/docker_project_AC/chromadb/natural_question_chromadb/:/app/chromadb/natural_question_chromadb \
+    -v ./chromadb/natural_question_chromadb/:/app/chromadb/natural_question_chromadb \
     adaptive-chunks-test
 
