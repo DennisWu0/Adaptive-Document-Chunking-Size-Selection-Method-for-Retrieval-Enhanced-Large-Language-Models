@@ -18,12 +18,16 @@ The proposed method consists of two core modules: a Hierarchical Chunking Strate
 **🎯 Core Components** 
 
 - **📄 Hierarchical Chunking Strategy -** We carefully process documents into a hierarchical structure, generating multiple chunk sizes and applying a padding strategy to maintain consistency by using an effective chunking in data processing within our RAG pipeline.
+
 - **🔄 Automated Data Pipeline -** Initially, we implemented a manual data preparation step to collect raw data from official sources, data ingestion, and convert them into vector embeddings stored in ChromaDB. Based on this workflow, we further developed a fully automated pipeline that allows audiences to focus only on input preparation.
+
 - **🧠 Chunk Selection Mechanism -** We design a rule-based filtering approach to identify and select the most important and various content. This one guarantees that the retrieved documents are relevant, non-overlapping, and compact, thereby improving the quality of input provided to the LLM during generation.
+
 - 🧮 **Retrieval Scoring Strategy -** Presenting the method used to calculate similarity scores and justifying the choice of our method.
 
 
 ---
+
 
 ## **🏗️ Algorithm & Architecture**
 
@@ -92,18 +96,11 @@ Given that the range of cos(𝜃) spans from [−1,1], and the squared Euclidean
 
 ### 4. Evaluation Metrics
 
-In our experiments, similarity scores between queries and retrieved documents
-are initially analyzed to understand the behavior of the retrieval model and its scoring
-characteristics. However, similarity scores alone do not directly reflect retrieval
-effectiveness with respect to user relevance. Therefore, a second stage of evaluation
-is conducted using these metrics: Mean Average Precision (MAP), Mean Reciprocal
-Rank (MRR), and normalized Discounted Cumulative Gain (nDCG), to rigorously
-assess ranking quality and retrieval performance. For comparison, a baseline retrieval
-system is constructed, referred to as the Naive RAG system. This baseline uses a fixed chunk size, and for clarity in our evaluation, we denote its variants as Baseline-
-512, Baseline-256, and Baseline-128, corresponding to the chunk size adopted in
-each setting. This naming method allows us to directly compare the effectiveness of
-our proposed adaptive chunking approach against traditional fixed-size retrieval
-strategies.
+- In our experiments, similarity scores between queries and retrieved documents are initially analyzed to understand the behavior of the retrieval model and its scoring characteristics. However, similarity scores alone do not directly reflect retrieval
+effectiveness with respect to user relevance. Therefore, a second stage of evaluation is conducted using these metrics: **Mean Average Precision (MAP)**, **Mean Reciprocal Rank (MRR)**, and **normalized Discounted Cumulative Gain (nDCG)**, to rigorously
+assess ranking quality and retrieval performance.
+
+- For comparison, a baseline retrieval system is constructed, referred to as the **Naive RAG system**. This baseline uses a fixed chunk size, and for clarity in our evaluation, we denote its variants as Baseline-512, Baseline-256, and Baseline-128, corresponding to the chunk size adopted in each setting. This naming method allows us to directly compare the effectiveness of our proposed adaptive chunking approach against traditional fixed-size retrieval strategies.
 
 **Key Concepts:**
 
@@ -135,6 +132,8 @@ The system is designed for efficient retrieval by separating offline data proces
 <img width="1255" height="630" alt="Picture5" src="https://github.com/user-attachments/assets/ce78b805-1fd1-44e9-ba1a-f23fdd62e5d3" />
 
 
+
+
 - **Multi-Database Vector Retrieval System**: Maintains four independent ChromaDB databases (Natural Questions, TriviaQA, QuAC, NarrativeQA), each containing multiple collections with different chunk sizes (128, 256, 512 tokens) to support adaptive and efficient similarity-based retrieval.
 - **Containerized Backend Service Architecture**: Deploys all services using Docker on an Ubuntu 24.04 LTS server. A Flask-based RESTful API processes user queries, interacts with vector databases, and applies the Chunk Selection Mechanism to return relevant results.
 - **Private Docker Registry Management**: Utilizes a dedicated private Docker registry hosted on a separate Ubuntu virtual machine to securely store and manage container images, ensuring controlled and reliable deployments without reliance on public repositories.
@@ -144,6 +143,7 @@ The system is designed for efficient retrieval by separating offline data proces
 
 ---
 
+
 ## **💾** System Requirements
 
 - **RAM:** Minimum 8 GB
@@ -152,6 +152,7 @@ The system is designed for efficient retrieval by separating offline data proces
 
 
 ---
+
 
 ## **🔧 Configuration**
 
@@ -182,6 +183,7 @@ You must provide valid API keys for:
 
 
 ---
+
 
 ## **🚀 Quick Launch for local host**
 
@@ -225,6 +227,7 @@ https://visualstudio.microsoft.com/visual-cpp-build-tools/
 
 
 ---
+
 
 ## **📖 Citation**
 
