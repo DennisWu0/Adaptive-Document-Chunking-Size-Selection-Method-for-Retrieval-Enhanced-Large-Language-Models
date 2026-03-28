@@ -1,0 +1,13 @@
+# Environment files
+.env
+
+# Databases 
+chromadb/
+natural_question_sql.db
+
+# Experiment data files
+experiment_gt_rd/
+experiment_retrieval_chunks/
+
+# Readme
+README.me
