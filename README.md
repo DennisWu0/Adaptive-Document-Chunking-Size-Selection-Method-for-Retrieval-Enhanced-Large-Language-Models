@@ -185,7 +185,7 @@ You must provide valid API keys for:
 ---
 
 
-## **🚀 Quick Launch for local host**
+## **🚀 Quick Launch **
 
 ### Clone the repo first (Required)
 ```
@@ -204,7 +204,7 @@ docker build -t adaptive-chunks .
 **Run the container**
 
 ```
-docker run --gpus all -p 5007:5007 \
+docker run -p 5007:5007 \
     -v $(pwd)/.env:/app/.env \
     -v ./chromadb/natural_question_chromadb/:/app/chromadb/natural_question_chromadb \
     -v ./natural_question_sql.db/:/app/natural_question_sql.db \
