@@ -193,6 +193,26 @@ git clone https://github.com/DennisWu0/Adaptive-Document-Chunking-Size-Selection
 cd Adaptive-Document-Chunking-Size-Selection-Method-for-Retrieval-Enhanced-Large-Language-Models
 ```
 
+### 🐳 Run with Docker (Recommended) ###
+
+**Build the Docker Image**
+
+```
+docker build -t adaptive-chunks .
+```
+
+**Run the container**
+
+```
+docker run --gpus all -p 5007:5007 \
+    -v $(pwd)/.env:/app/.env \
+    -v ./chromadb/natural_question_chromadb/:/app/chromadb/natural_question_chromadb \
+    -v ./natural_question_sql.db/:/app/natural_question_sql.db \
+    adaptive-chunks
+```
+
+### 💻 Run Without Docker ###
+
 ### Windows
 
 ```
@@ -221,8 +241,7 @@ python app.py
 
 ⚠️ Notes
 
-- This project uses **ChromaDB**, which depends on `chroma-hnswlib`.
-- On Windows, you must install:
+- This project uses **ChromaDB**, which depends on `chroma-hnswlib`. So, on Windows system, you must install:
 
 > **Microsoft Visual C++ 14.0 or greater**
 > 
