@@ -187,6 +187,12 @@ You must provide valid API keys for:
 
 ## **🚀 Quick Launch for local host**
 
+### Clone the repo first (Required)
+```
+git clone https://github.com/DennisWu0/Adaptive-Document-Chunking-Size-Selection-Method-for-Retrieval-Enhanced-Large-Language-Models.git
+cd Adaptive-Document-Chunking-Size-Selection-Method-for-Retrieval-Enhanced-Large-Language-Models
+```
+
 ### Windows
 
 ```
