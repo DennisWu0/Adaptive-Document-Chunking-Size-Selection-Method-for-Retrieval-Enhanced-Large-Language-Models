@@ -2,12 +2,24 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
+RUN pip install --upgrade pip \
+    && pip install --no-cache-dir uv \
+    && pip install --no-cache-dir \
+        torch==2.2.2 \
+        --index-url https://download.pytorch.org/whl/cpu
+
+RUN uv pip install --system --no-cache-dir \ 
+    "numpy<2" \ 
+    "sentence-transformers==2.6.1"
+
 COPY requirements.txt .
 
-RUN pip install --upgrade pip \
- && pip install uv
-
 RUN uv pip install --system -r requirements.txt
+
+RUN adduser --disabled-password --gecos "" petops \
+    && chown -R petops:petops /app
+
+USER petops
 
 COPY . .
 
