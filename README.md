@@ -198,7 +198,7 @@ cd Adaptive-Document-Chunking-Size-Selection-Method-for-Retrieval-Enhanced-Large
 **Build the Docker Image**
 
 ```
-docker build -t adaptive-chunks .
+docker build -f Dockerfile.prod -t adaptive-chunks .
 ```
 
 **Run the container**
